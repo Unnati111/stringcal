@@ -3,7 +3,7 @@ public class StringCalculator{
   int count=0;
 	public int Add(String numbers){
 		List<Integer> negatives=new ArrayList<>();
-		int sum=0;
+		int sum=0,start=0,end=0;
 		String[] arrSplit = null;
 		String delimiter=null,newstring=null;
 		count++;
@@ -12,9 +12,15 @@ public class StringCalculator{
 		}
 		else {
 			if(numbers.startsWith("//")) {
+				  start=numbers.indexOf("[");
+				  end=numbers.indexOf("]");
+				  if(start!=-1 && end!=-1){
+					delimiter = numbers.substring(start+1, end);
+				}else{
 					delimiter=Character.toString(numbers.charAt(2));
+				}
 					newstring=numbers.substring(numbers.indexOf("\n")+1);
-					arrSplit = newstring.split(delimiter.trim());
+					arrSplit = newstring.replace(delimiter,"-").split("-");
 				}
 				else{
 					arrSplit = numbers.split(",|\\n");
@@ -52,6 +58,7 @@ public class StringCalculator{
 //		int value6=s.Add("1,-1,-2"); //Test case 5 passed
 		int counter=s.GetCalledCount();//Test case 7 passed
 		int value7=s.Add("//;\n1;1200;7");
+		int value8=s.Add("//[***]\n1***2***3");
 	  	System.out.println("Input:''  Output:"+value);
 	  	System.out.println("Input:'1'  Output:"+value1);
 		System.out.println("Input:'1,2'  Output:"+value2);
@@ -60,6 +67,7 @@ public class StringCalculator{
 		System.out.println("Input:'//;\\n1;2;7'  Output:"+value5);
 		System.out.println("Count--"+counter);
 		System.out.println("Input:'//;\\n1;1200;7'  Output:"+value7);
+		System.out.println("Input:'//[***]\\n1***2***3'  Output:"+value8);
 	}catch(RuntimeException e){
 		System.out.println(e);
 	}

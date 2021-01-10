@@ -24,6 +24,9 @@ public class StringCalculator{
 				if(temp<0){
 					negatives.add(temp);
 				}
+				if(temp>1000){
+					temp=0;
+				}
 				sum+=temp;
 			 }
 			 if(negatives.size()>0)throw new RuntimeException("negatives not allowed-"+negatives);
@@ -48,6 +51,7 @@ public class StringCalculator{
 		int value5=s.Add("//;\n1;2;7");//Test Case 4 passed
 //		int value6=s.Add("1,-1,-2"); //Test case 5 passed
 		int counter=s.GetCalledCount();//Test case 7 passed
+		int value7=s.Add("//;\n1;1200;7");
 	  	System.out.println("Input:''  Output:"+value);
 	  	System.out.println("Input:'1'  Output:"+value1);
 		System.out.println("Input:'1,2'  Output:"+value2);
@@ -55,6 +59,7 @@ public class StringCalculator{
 		System.out.println("Input:'1\\n2,3'  Output:"+value4);
 		System.out.println("Input:'//;\\n1;2;7'  Output:"+value5);
 		System.out.println("Count--"+counter);
+		System.out.println("Input:'//;\\n1;1200;7'  Output:"+value7);
 	}catch(RuntimeException e){
 		System.out.println(e);
 	}

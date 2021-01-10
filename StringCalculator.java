@@ -1,10 +1,12 @@
 import java.util.*;
 public class StringCalculator{
-  List<Integer> negatives=new ArrayList<>();
+  int count=0;
 	public int Add(String numbers){
+		List<Integer> negatives=new ArrayList<>();
 		int sum=0;
 		String[] arrSplit = null;
 		String delimiter=null,newstring=null;
+		count++;
 		if(numbers.length()==0) {   //Test Case1 passed
 			return 0;
 		}
@@ -30,6 +32,11 @@ public class StringCalculator{
 		}
 	}
 
+	 public int GetCalledCount(){
+		 return count;
+	 }
+
+
 	public static void main(String[] args){
 		StringCalculator s=new StringCalculator();
 		try{
@@ -39,13 +46,15 @@ public class StringCalculator{
 		int value3=s.Add("1,2,3,4,51,9"); //Test Case 2 passed
 		int value4=s.Add("1\n2,3"); //Test Case 3 passed
 		int value5=s.Add("//;\n1;2;7");//Test Case 4 passed
-		int value6=s.Add("1,-1,-2"); //Test case 5 passed
+//		int value6=s.Add("1,-1,-2"); //Test case 5 passed
+		int counter=s.GetCalledCount();//Test case 7 passed
 	  	System.out.println("Input:''  Output:"+value);
 	  	System.out.println("Input:'1'  Output:"+value1);
 		System.out.println("Input:'1,2'  Output:"+value2);
 		System.out.println("Input:'1,2,3,4,51,9'  Output:"+value3);
 		System.out.println("Input:'1\\n2,3'  Output:"+value4);
 		System.out.println("Input:'//;\\n1;2;7'  Output:"+value5);
+		System.out.println("Count--"+counter);
 	}catch(RuntimeException e){
 		System.out.println(e);
 	}
